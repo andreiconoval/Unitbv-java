@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="com.example.model.User"/>
     <fullyQualifiedTypeName name="javax.naming.NamingException"/>
     <fullyQualifiedTypeName name="javax.naming.InitialContext"/>
+    <fullyQualifiedTypeName name="com.example.FirstStatelessEjbRemote"/>
 </qualifiedTypeNameHistroy>

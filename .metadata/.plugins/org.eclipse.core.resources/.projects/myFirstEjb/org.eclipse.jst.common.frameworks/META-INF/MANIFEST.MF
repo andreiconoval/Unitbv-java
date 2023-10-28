@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Class-Path: myFirstEjbClient.jar eclipselink.jar eclipselink-sources.jar
+  jakarta.annotation-api.jar jakarta.persistence-api.jar org.eclipse.per
+ sistence.jpa.modelgen.processor.jar org.eclipse.persistence.jpars.jar o
+ rg.eclipse.persistence.extension.jar org.eclipse.persistence.nosql.jar 
+ org.eclipse.persistence.oracle.nosql.jar javax.persistence-api-2.2.jar
+

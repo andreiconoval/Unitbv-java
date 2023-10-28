@@ -1,0 +1,26 @@
+package com.example;
+
+import jakarta.ejb.LocalBean;
+import jakarta.ejb.Stateless;
+
+/**
+ * Session Bean implementation class FirstStatelessEjb
+ */
+@Stateless
+@LocalBean
+public class FirstStatelessEjb implements FirstStatelessEjbRemote {
+
+    /**
+     * Default constructor. 
+     */
+    public FirstStatelessEjb() {
+        // TODO Auto-generated constructor stub
+    }
+
+	@Override
+	public void insert(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

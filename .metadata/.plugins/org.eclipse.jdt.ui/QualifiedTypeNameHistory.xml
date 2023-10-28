@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="jakarta.persistence.EntityManager"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.PersistenceContext"/>
+    <fullyQualifiedTypeName name="com.example.model.User"/>
+    <fullyQualifiedTypeName name="javax.naming.NamingException"/>
+    <fullyQualifiedTypeName name="javax.naming.InitialContext"/>
+</qualifiedTypeNameHistroy>

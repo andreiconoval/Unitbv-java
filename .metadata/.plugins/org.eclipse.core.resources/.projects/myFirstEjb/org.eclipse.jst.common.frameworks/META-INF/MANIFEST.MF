@@ -1,7 +1,11 @@
 Manifest-Version: 1.0
-Class-Path: myFirstEjbClient.jar eclipselink.jar eclipselink-sources.jar
-  jakarta.annotation-api.jar jakarta.persistence-api.jar org.eclipse.per
- sistence.jpa.modelgen.processor.jar org.eclipse.persistence.jpars.jar o
- rg.eclipse.persistence.extension.jar org.eclipse.persistence.nosql.jar 
- org.eclipse.persistence.oracle.nosql.jar javax.persistence-api-2.2.jar
+Class-Path: myFirstEjbClient.jar eclipselink.jar org.eclipse.persistence
+ .jpa.modelgen.source_2.7.11.v20220810-51b5b24bf1.jar org.eclipse.persis
+ tence.jpa.modelgen_2.7.11.v20220810-51b5b24bf1.jar org.eclipse.persiste
+ nce.jpars.source_2.7.11.v20220810-51b5b24bf1.jar org.eclipse.persistenc
+ e.jpars_2.7.11.v20220810-51b5b24bf1.jar jakarta.persistence.source_2.2.
+ 3.jar jakarta.persistence_2.2.3.jar eclipselink-dbwsutils.jar jakarta.s
+ ervlet-api.jar javax.wsdl_1.6.2.v201012040545.jar org.eclipse.persisten
+ ce.oracleddlparser.source_1.0.0.v201807030954.jar org.eclipse.persisten
+ ce.oracleddlparser_1.0.0.v201807030954.jar ucp11.jar
 

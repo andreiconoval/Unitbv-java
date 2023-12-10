@@ -9,10 +9,9 @@ public class Main {
 
 	public static void main(String[] args) throws NamingException {
 		// TODO Auto-generated method stub
-		InitialContext context  = new InitialContext();
-		FirstStatelessEjbRemote firstEjb=(FirstStatelessEjbRemote) context
-				.lookup("java:global/myFirstEar/myFirstEjb/FirstStatelessEjb!com.example.FirstStatelessEjb");
-		firstEjb.insert("Andrei Conoval");
+     InitialContext context =  new InitialContext();
+     FirstStatelessEjbRemote firstejb = (FirstStatelessEjbRemote) context
+    		 .lookup("java:global/myFirstEar/myFirstEjb/FirstStatelessEjb!com.example.FirstStatelessEjbRemote");
+     firstejb.insert("Andrei");
 	}
-
 }

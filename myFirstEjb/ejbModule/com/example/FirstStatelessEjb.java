@@ -1,11 +1,10 @@
 package com.example;
 
-import com.example.model.User;
+import com.example.model.Userprofile;
 
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
-
 /**
  * Session Bean implementation class FirstStatelessEjb
  */
@@ -21,11 +20,13 @@ public class FirstStatelessEjb implements FirstStatelessEjbRemote {
      */
     public FirstStatelessEjb() {
         // TODO Auto-generated constructor stub
+
     }
 
 	@Override
 	public void insert(String name) {
-		entityManage.persist(new User(name));	
+		
+		entityManage.persist(new Userprofile(name));	
 	}
 
 }

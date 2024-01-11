@@ -40,7 +40,7 @@ public class HelloBeanSlet extends HttpServlet {
 	    		 .lookup("java:global/EJBEar/EJBBean/StatelessEjb!com.example.StatelessEjbRemote");
 			
 			String str =  firstejb.sayHello();
-			
+			firstejb.insert("Andrei");
 			response.setContentType("text/htm");
 			PrintWriter out = response.getWriter();
 			

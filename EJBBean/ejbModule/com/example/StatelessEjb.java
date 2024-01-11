@@ -1,6 +1,8 @@
 package com.example;
 
 import jakarta.ejb.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 /**
  * Session Bean implementation class StatelessEjb
@@ -9,6 +11,8 @@ import jakarta.ejb.*;
 @LocalBean
 public class StatelessEjb implements StatelessEjbRemote {
 
+	@PersistenceContext
+	private EntityManager entityManage;
     /**
      * Default constructor. 
      */
@@ -18,7 +22,7 @@ public class StatelessEjb implements StatelessEjbRemote {
 
 	@Override
 	public void insert(String name) {
-		// TODO Auto-generated method stub
+		entityManage.persist(new com.example.models.Userprofile(name));	
 		
 	}
 

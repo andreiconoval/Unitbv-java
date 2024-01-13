@@ -10,6 +10,7 @@ import jakarta.persistence.*;
  */
 @Entity
 @NamedQuery(name="Userprofile.findAll", query="SELECT u FROM Userprofile u")
+@NamedQuery(name = "findUserByUsername", query = "SELECT u FROM Userprofile u WHERE u.username = :username")
 public class Userprofile implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,11 +20,23 @@ public class Userprofile implements Serializable {
 
 	private String name;
 
+	private String password;
+
+	private String username;
+
 	public Userprofile() {
 	}
 	
 	public Userprofile(String name) {
 		this.name = name;
+		this.password = name;
+		this.username = name;
+	}
+	
+	public Userprofile(String password, String username) {
+		super();
+		this.password = password;
+		this.username = username;
 	}
 
 	public int getIduser() {
@@ -40,6 +53,22 @@ public class Userprofile implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

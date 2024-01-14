@@ -43,7 +43,7 @@ public class UserDao implements UserDAORemote {
 
 	@Override
 	public List<UserDTO> findAll() {
-		Query query = entityManager.createQuery("SELECT u FROM User u");
+		Query query = entityManager.createQuery("SELECT u FROM Userprofile u");
 		@SuppressWarnings("unchecked")
 		List<Userprofile> users = query.getResultList();
 		System.out.println(users.toString());

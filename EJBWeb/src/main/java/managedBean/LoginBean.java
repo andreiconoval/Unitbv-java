@@ -3,11 +3,13 @@ package managedBean;
 import jakarta.ejb.EJB;
 import jakarta.faces.application.FacesMessage;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -36,6 +38,11 @@ public class LoginBean implements Serializable{
 	StatelessEjbRemote EjbRemote;
 
 	UserDTO userDTO;
+	
+	public LoginBean() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		this.userDTO = (UserDTO) facesContext.getExternalContext().getSessionMap().get("userDTO");
+	}
 
 	public LoginDTO getLoginDTO() {
 		return loginDTO;
@@ -78,5 +85,38 @@ public class LoginBean implements Serializable{
 
 		return "/index?faces-redirect=true";
 	}
+	
+	public int getUserId() {
+
+		if(this.userDTO == null)
+		{
+            redirectToIndexPage();
+            return -1;
+		}
+
+		return this.userDTO.getId();
+	}
+	
+	public String getUsername() {
+
+		if(userDTO == null)
+		{
+            redirectToIndexPage();
+		}
+
+		return userDTO.getUsername();
+	}
+	
+    private void redirectToIndexPage() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+
+        try {
+            externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml");
+            facesContext.responseComplete();
+        } catch (Exception e) {
+            // Handle the exception (log it, show an error message, etc.)
+        }
+    }
 
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+	<f:viewParam name="param1" value="#{workIncidentBean.param1}" />
+	<f:viewParam name="param2" value="#{workIncidentBean.param2}" />
+	<f:event type="preRenderView" listener="#{workIncidentBean.loadData}" />
+</f:metadata>
+
+<h3 class="mb-4">Incident List</h3>
+
+<p:messages id="messages" showDetail="true" />
+
+<!-- Display parameters for demonstration purposes -->
+<p:panel header="Parameters">
+	<p:outputLabel value="Param1: #{workIncidentBean.param1}" />
+	<br />
+	<p:outputLabel value="Param2: #{workIncidentBean.param2}" />
+</p:panel>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Department</th>
+			<th>Reported By</th>
+			<th>Date Resolved</th>
+			<th>Resolution</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<ui:repeat value="#{workIncidentBean.incidentList}" var="incident">
+			<tr>
+				<td>#{incident.id}</td>
+				<td>#{incident.title}</td>
+				<td>#{incident.description}</td>
+				<td>#{incident.department}</td>
+				<td>#{incident.reportedBy}</td>
+				<td>#{incident.dateResolved}</td>
+				<td>#{incident.resolution}</td>
+				<td>#{incident.status}</td>
+			</tr>
+		</ui:repeat>
+	</tbody>
+</table>
+
+
+</html>

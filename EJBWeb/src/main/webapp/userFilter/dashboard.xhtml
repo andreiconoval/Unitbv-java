@@ -33,7 +33,10 @@
 							<h2 class="title-form-login">Working incidents</h2>
 						</div>
 						<p>
-							<a href="add-work-incident.xhtml">Add working incident</a>
+						<h:form>
+							<h:commandLink value="Add working incident"
+								action="#{workIncidentBean.createNewIncident}" />
+						</h:form>
 						</p>
 						<!-- Your existing content goes here -->
 	<ui:include src="/userFilter/incidentList.xhtml" />

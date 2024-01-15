@@ -1,34 +1,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <h:head>
-       	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<h:head>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="dashboard.xhtml">Dashboard</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						#{loginBean.getUsername()}
-					</a>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> #{loginBean.getUsername()} </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Logout</a>
-					</div>
-				</li>
+						<h:form>
+							<h:commandLink class="dropdown-item" value="Logout"
+								action="#{loginBean.logout}" />
+						</h:form>
+					</div></li>
 			</ul>
 		</div>
 	</nav>
-    </h:head>
-      <ui:fragment rendered="#{empty loginBean.userDTO}">
-            <!-- Redirect to logout if the user is not logged in -->
-            <h:outputScript rendered="#{empty loginBean.userDTO}">
+</h:head>
+<ui:fragment rendered="#{empty loginBean.userDTO}">
+	<!-- Redirect to logout if the user is not logged in -->
+	<h:outputScript rendered="#{empty loginBean.userDTO}">
                 window.location.replace("#{loginBean.logout()}");
             </h:outputScript>
-        </ui:fragment>
+</ui:fragment>
 
 </html>

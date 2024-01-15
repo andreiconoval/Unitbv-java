@@ -3,9 +3,7 @@ package com.example.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.dto.UserDTO;
 import com.example.dto.WorkIncidentDTO;
-import com.example.models.Userprofile;
 import com.example.models.WorkIncident;
 import com.example.util.DtoToEntity;
 import com.example.util.EntityToDTO;
@@ -70,6 +68,14 @@ public class WorkIncidentDao implements WorkIncidentDAORemote {
 		}
 		return dtoWorkIncidents;
 	}
+	
+	@Override
+	public WorkIncidentDTO findIncidentById(int incidentId) {
+		var incidend = entityManager.createNamedQuery("findIncidentById", WorkIncident.class)
+				.setParameter("id", incidentId).getSingleResult();
+		return entityToDTO.convertWorkIncident(incidend);
+	}
+
 
 	@Override
 	public WorkIncidentDTO create(WorkIncidentDTO workIncidentDTO) {

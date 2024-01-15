@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.example.dto.ChangePasswordDTO;
 import com.example.dto.LoginDTO;
+import com.example.dto.RegisterDTO;
 import com.example.dto.UserDTO;
 import com.example.exception.ChangePasswordException;
 import com.example.exception.LoginException;
@@ -14,7 +15,6 @@ import com.example.util.EntityToDTO;
 
 import jakarta.ejb.*;
 import jakarta.persistence.*;
-
 
 /**
  * Session Bean implementation class UserDao
@@ -94,6 +94,21 @@ public class UserDao implements UserDAORemote {
 		UserDTO userDTO = entityToDTO.convertUser(user);
 		return userDTO;
 
+	}
+
+	@Override
+	public UserDTO registerUser(RegisterDTO registerDTO) throws LoginException {
+		try {
+			var accountfound = entityManager.createNamedQuery("findUserByUsername", Userprofile.class)
+					.setParameter("username", registerDTO.getUsername()).getResultList();
+			if (accountfound.size() > 0) {
+				throw new LoginException("Wrong authentication!, User exist");
+			}
+			var userDTO = new UserDTO(registerDTO.getUsername(), registerDTO.getPassword(), registerDTO.getName());
+			return this.create(userDTO);
+		} catch (NoResultException e) {
+			throw new LoginException(e.getMessage());
+		}
 	}
 
 	@Override

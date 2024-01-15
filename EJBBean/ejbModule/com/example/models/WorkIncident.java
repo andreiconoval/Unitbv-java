@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name="work_incident")
 @NamedQuery(name="WorkIncident.findAll", query="SELECT w FROM WorkIncident w")
+@NamedQuery(name = "findIncidentById", query = "SELECT w FROM WorkIncident w WHERE w.id = :id")
 public class WorkIncident implements Serializable {
 	private static final long serialVersionUID = 1L;
 

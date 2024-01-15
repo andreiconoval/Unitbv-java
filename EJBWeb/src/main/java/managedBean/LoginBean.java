@@ -2,21 +2,14 @@ package managedBean;
 
 import jakarta.ejb.EJB;
 import jakarta.faces.application.FacesMessage;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-
-import java.io.PrintWriter;
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import com.example.StatelessEjbRemote;
 import com.example.dao.UserDAORemote;
 import com.example.dto.LoginDTO;
+import com.example.dto.RegisterDTO;
 import com.example.dto.UserDTO;
 import com.example.exception.LoginException;
 
@@ -30,6 +23,8 @@ public class LoginBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	LoginDTO loginDTO = new LoginDTO();
+	RegisterDTO registerDTO = new RegisterDTO();
+	UserDTO userDTO;
 
 	@EJB
 	UserDAORemote userDAORemote;
@@ -37,7 +32,6 @@ public class LoginBean implements Serializable{
 	@EJB
 	StatelessEjbRemote EjbRemote;
 
-	UserDTO userDTO;
 	
 	public LoginBean() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -50,6 +44,14 @@ public class LoginBean implements Serializable{
 
 	public void setLoginDTO(LoginDTO loginDTO) {
 		this.loginDTO = loginDTO;
+	}
+	
+	public RegisterDTO getRegisterDTO() {
+		return registerDTO;
+	}
+
+	public void setRegisterDTO(RegisterDTO registerDTO) {
+		this.registerDTO = registerDTO;
 	}
 
 	public UserDTO getUserDTO() {
@@ -77,6 +79,20 @@ public class LoginBean implements Serializable{
 		}
 
 	}
+	
+	public String registerUser() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		try {
+		userDTO = userDAORemote.registerUser(registerDTO);
+		facesContext.getExternalContext().getSessionMap().put("userDTO", userDTO);
+		System.out.println("user logged");
+		return "/userFilter/dashboard.xhtml?faces-redirect=true";
+		} catch (LoginException e) {
+			System.out.println("Invalid register flow");
+			facesContext.addMessage("registerForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, e.message(), null));
+			return null;
+		}
+	}
 
 	public String logout() {
 
@@ -102,6 +118,7 @@ public class LoginBean implements Serializable{
 		if(userDTO == null)
 		{
             redirectToIndexPage();
+            return "";
 		}
 
 		return userDTO.getUsername();

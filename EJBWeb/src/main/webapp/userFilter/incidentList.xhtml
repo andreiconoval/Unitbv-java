@@ -33,6 +33,7 @@
 			<th>Date Resolved</th>
 			<th>Resolution</th>
 			<th>Status</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -46,6 +47,15 @@
 				<td>#{incident.dateResolved}</td>
 				<td>#{incident.resolution}</td>
 				<td>#{incident.status}</td>
+				<td><h:form>
+						<h:commandButton value="Delete"
+							rendered="#{workIncidentBean.canDelete(incident.id)}"
+							action="#{workIncidentBean.deleteIncident(incident.id)}"></h:commandButton>
+
+						<h:commandButton value="Modify"
+							action="#{workIncidentBean.modifyIncident(incident.id)}"></h:commandButton>
+					
+					</h:form></td>
 			</tr>
 		</ui:repeat>
 	</tbody>

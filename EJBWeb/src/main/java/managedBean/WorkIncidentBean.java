@@ -32,6 +32,9 @@ public class WorkIncidentBean implements Serializable {
     
 	private String param2;
     
+	private int incidentIdToModify;
+
+
 
 
 	@EJB
@@ -61,10 +64,62 @@ public class WorkIncidentBean implements Serializable {
 		return "/userFilter/dashboard.xhtml?faces-redirect=true";
 	}
 	
+	public String createNewIncident() {
+		newIncident = new WorkIncidentDTO();
+		return "/userFilter/add-work-incident.xhtml?faces-redirect=true";
+
+	}
+	
+	public void loadModifiedIncident() {
+	    WorkIncidentDTO incident = workIncidentDAORemote.findIncidentById(incidentIdToModify);
+	    newIncident = incident;
+	    // Set other properties...
+	}
+	
+	public String saveModifiedIncident() {
+	    workIncidentDAORemote.update(newIncident);
+
+	    newIncident = new WorkIncidentDTO();
+
+	    return "/userFilter/dashboard.xhtml?faces-redirect=true";
+	}
+	
     public List<WorkIncidentDTO> getIncidentList() {
 		incidentList = this.workIncidentDAORemote.findAllForUser(this.loginBean.getUserId());
         return incidentList;
     }
+    
+    
+    
+    public boolean canDelete(int incidentId) {
+        return  userDTO != null && userDTO.getId() == workIncidentDAORemote.findIncidentById(incidentId).getCreatedBy();
+    }
+    
+    public String deleteIncident(int incidentId) {
+        workIncidentDAORemote.delete(incidentId);
+        loadData(); // Reload incidentList after deletion
+	    return null;
+
+    }
+    public String modifyIncident1() {
+		return "/index?faces-redirect=true";
+
+    }
+    public String modifyIncident(int incidentId) {
+
+        WorkIncidentDTO incident = workIncidentDAORemote.findIncidentById(incidentId);
+
+        // Set the incident details to be modified
+        newIncident.setId(incident.getId());
+        newIncident.setTitle(incident.getTitle());
+        newIncident.setDescription(incident.getDescription());
+        // Set other properties...
+
+        // Add incidentId as a query parameter to navigate to the modification page
+        return "/userFilter/update-work-incident.xhtml?faces-redirect=true&incidentId=" + incidentId;
+    }
+    
+    
     
     // Getters and setters for param1 and param2
     public int getParam1() {
@@ -90,5 +145,13 @@ public class WorkIncidentBean implements Serializable {
     public void setNewIncident(WorkIncidentDTO newIncident) {
         this.newIncident = newIncident;
     }
+    
+	public int getIncidentIdToModify() {
+	    return incidentIdToModify;
+	}
+
+	public void setIncidentIdToModify(int incidentIdToModify) {
+	    this.incidentIdToModify = incidentIdToModify;
+	}
 
 }

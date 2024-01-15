@@ -8,7 +8,7 @@ import com.example.models.WorkIncident;
 public class DtoToEntity {
 	
 	public Userprofile convertUser(UserDTO userDTO) {
-		Userprofile user = new Userprofile(userDTO.getUsername(), userDTO.getPassword());
+		Userprofile user = new Userprofile(userDTO.getUsername(), userDTO.getPassword(), userDTO.getName());
 
 		return user;
 	}

@@ -38,6 +38,13 @@ public class Userprofile implements Serializable {
 		this.password = password;
 		this.username = username;
 	}
+	
+	public Userprofile(String username, String password, String name) {
+		super();
+		this.password = password;
+		this.username = username;
+		this.name = name;
+	}
 
 	public int getIduser() {
 		return this.iduser;

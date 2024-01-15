@@ -48,7 +48,7 @@ public class WorkIncidentDao implements WorkIncidentDAORemote {
 		Query query = entityManager.createQuery("SELECT w FROM WorkIncident w");
 		@SuppressWarnings("unchecked")
 		List<WorkIncident> workIncidents = query.getResultList();
-		System.out.println(workIncidents.toString());
+		System.out.println("findAll:" + workIncidents.toString());
 		List<WorkIncidentDTO> dtoWorkIncidents = new ArrayList<>();
 		for (WorkIncident workIncident : workIncidents) {
 			dtoWorkIncidents.add(entityToDTO.convertWorkIncident(workIncident));
@@ -61,7 +61,7 @@ public class WorkIncidentDao implements WorkIncidentDAORemote {
 		query.setParameter("userId", userId);
 		@SuppressWarnings("unchecked")
 		List<WorkIncident> workIncidents = query.getResultList();
-		System.out.println(workIncidents.toString());
+		System.out.println("findAllForUser:" +workIncidents.toString());
 		List<WorkIncidentDTO> dtoWorkIncidents = new ArrayList<>();
 		for (WorkIncident workIncident : workIncidents) {
 			dtoWorkIncidents.add(entityToDTO.convertWorkIncident(workIncident));

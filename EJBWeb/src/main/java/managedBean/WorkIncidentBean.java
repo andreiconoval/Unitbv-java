@@ -3,6 +3,7 @@ package managedBean;
 import java.io.Serializable;
 
 import com.example.dao.UserDAORemote;
+import com.example.dao.UserRoleDAORemote;
 import com.example.dao.WorkIncidentDAORemote;
 import com.example.dto.UserDTO;
 import com.example.dto.WorkIncidentDTO;
@@ -23,38 +24,46 @@ public class WorkIncidentBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	WorkIncidentDTO newIncident = new WorkIncidentDTO();
-	
+
 	UserDTO userDTO = new UserDTO();
 	
+	boolean isAdmin = false;
+
 	private List<WorkIncidentDTO> incidentList;
-    
+
 	private int param1;
-    
+
 	private String param2;
-    
+
 	private int incidentIdToModify;
-
-
-
 
 	@EJB
 	UserDAORemote userDAORemote;
 
 	@EJB
 	WorkIncidentDAORemote workIncidentDAORemote;
-	
-    @Inject
-    private LoginBean loginBean;
+
+	@EJB
+	UserRoleDAORemote userRoleDAORemote;
+
+	@Inject
+	private LoginBean loginBean;
 
 	public WorkIncidentBean() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		this.userDTO = (UserDTO) facesContext.getExternalContext().getSessionMap().get("userDTO");
 		incidentList = new ArrayList<>();
+
 	}
 
 	public void loadData() {
+		this.isAdmin = this.userRoleDAORemote.IsUserAdmin(this.loginBean.getUserId());
 		incidentList.clear();
-		incidentList = this.workIncidentDAORemote.findAllForUser(this.loginBean.getUserId());
+		if (this.isAdmin) {
+			incidentList = this.workIncidentDAORemote.findAll();
+		} else {
+			incidentList = this.workIncidentDAORemote.findAllForUser(this.loginBean.getUserId());
+		}
 	}
 
 	public String LogWorkingIncidents() {
@@ -63,95 +72,125 @@ public class WorkIncidentBean implements Serializable {
 		newIncident = workIncidentDAORemote.create(newIncident);
 		return "/userFilter/dashboard.xhtml?faces-redirect=true";
 	}
-	
+
 	public String createNewIncident() {
 		newIncident = new WorkIncidentDTO();
 		return "/userFilter/add-work-incident.xhtml?faces-redirect=true";
 
 	}
-	
+
 	public void loadModifiedIncident() {
-	    WorkIncidentDTO incident = workIncidentDAORemote.findIncidentById(incidentIdToModify);
-	    newIncident = incident;
-	    // Set other properties...
+		WorkIncidentDTO incident = workIncidentDAORemote.findIncidentById(incidentIdToModify);
+		newIncident = incident;
+		// Set other properties...
 	}
-	
+
 	public String saveModifiedIncident() {
-	    workIncidentDAORemote.update(newIncident);
+		workIncidentDAORemote.update(newIncident);
 
-	    newIncident = new WorkIncidentDTO();
+		newIncident = new WorkIncidentDTO();
 
-	    return "/userFilter/dashboard.xhtml?faces-redirect=true";
+		return "/userFilter/dashboard.xhtml?faces-redirect=true";
+	}
+
+	public List<WorkIncidentDTO> getIncidentList() {
+		this.isAdmin = this.userRoleDAORemote.IsUserAdmin(this.loginBean.getUserId());
+		if (this.isAdmin) {
+			incidentList = this.workIncidentDAORemote.findAll();
+		} else {
+			incidentList = this.workIncidentDAORemote.findAllForUser(this.loginBean.getUserId());
+		}
+		return incidentList;
+	}
+
+	public boolean canDelete(int incidentId) {
+		return userDTO != null && userDTO.getId() == workIncidentDAORemote.findIncidentById(incidentId).getCreatedBy();
 	}
 	
-    public List<WorkIncidentDTO> getIncidentList() {
-		incidentList = this.workIncidentDAORemote.findAllForUser(this.loginBean.getUserId());
-        return incidentList;
-    }
-    
-    
-    
-    public boolean canDelete(int incidentId) {
-        return  userDTO != null && userDTO.getId() == workIncidentDAORemote.findIncidentById(incidentId).getCreatedBy();
-    }
-    
-    public String deleteIncident(int incidentId) {
-        workIncidentDAORemote.delete(incidentId);
-        loadData(); // Reload incidentList after deletion
-	    return null;
+	public boolean canModify(int incidentId) {
+		return userDTO != null && userDTO.getId() == workIncidentDAORemote.findIncidentById(incidentId).getCreatedBy();
+	}
 
-    }
-    public String modifyIncident1() {
+	public String deleteIncident(int incidentId) {
+		workIncidentDAORemote.delete(incidentId);
+		loadData(); // Reload incidentList after deletion
+		return null;
+
+	}
+
+	public String modifyIncident1() {
 		return "/index?faces-redirect=true";
 
-    }
-    public String modifyIncident(int incidentId) {
+	}
 
-        WorkIncidentDTO incident = workIncidentDAORemote.findIncidentById(incidentId);
+	public String modifyIncident(int incidentId) {
 
-        // Set the incident details to be modified
-        newIncident.setId(incident.getId());
-        newIncident.setTitle(incident.getTitle());
-        newIncident.setDescription(incident.getDescription());
-        // Set other properties...
+		WorkIncidentDTO incident = workIncidentDAORemote.findIncidentById(incidentId);
 
-        // Add incidentId as a query parameter to navigate to the modification page
-        return "/userFilter/update-work-incident.xhtml?faces-redirect=true&incidentId=" + incidentId;
-    }
-    
-    
-    
-    // Getters and setters for param1 and param2
-    public int getParam1() {
-        return param1;
-    }
+		// Set the incident details to be modified
+		newIncident.setId(incident.getId());
+		newIncident.setTitle(incident.getTitle());
+		newIncident.setDescription(incident.getDescription());
+		// Set other properties...
 
-    public void setParam1(int param1) {
-        this.param1 = param1;
-    }
+		// Add incidentId as a query parameter to navigate to the modification page
+		return "/userFilter/update-work-incident.xhtml?faces-redirect=true&incidentId=" + incidentId;
+	}
+	
+	public String resolveIncident(int incidentId) {
 
-    public String getParam2() {
-        return param2;
-    }
+		WorkIncidentDTO incident = workIncidentDAORemote.findIncidentById(incidentId);
 
-    public void setParam2(String param2) {
-        this.param2 = param2;
-    }
-    
-    public WorkIncidentDTO getNewIncident() {
-        return newIncident;
-    }
+		// Set the incident details to be modified
+		newIncident.setId(incident.getId());
+		newIncident.setTitle(incident.getTitle());
+		newIncident.setDescription(incident.getDescription());
+		// Set other properties...
 
-    public void setNewIncident(WorkIncidentDTO newIncident) {
-        this.newIncident = newIncident;
-    }
-    
+		// Add incidentId as a query parameter to navigate to the modification page
+		return "/userFilter/resolve-work-incident.xhtml?faces-redirect=true&incidentId=" + incidentId;
+	}
+
+
+	// Getters and setters for param1 and param2
+	public int getParam1() {
+		return param1;
+	}
+
+	public void setParam1(int param1) {
+		this.param1 = param1;
+	}
+
+	public String getParam2() {
+		return param2;
+	}
+
+	public void setParam2(String param2) {
+		this.param2 = param2;
+	}
+
+	public WorkIncidentDTO getNewIncident() {
+		return newIncident;
+	}
+
+	public void setNewIncident(WorkIncidentDTO newIncident) {
+		this.newIncident = newIncident;
+	}
+	
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public int getIncidentIdToModify() {
-	    return incidentIdToModify;
+		return incidentIdToModify;
 	}
 
 	public void setIncidentIdToModify(int incidentIdToModify) {
-	    this.incidentIdToModify = incidentIdToModify;
+		this.incidentIdToModify = incidentIdToModify;
 	}
 
 }

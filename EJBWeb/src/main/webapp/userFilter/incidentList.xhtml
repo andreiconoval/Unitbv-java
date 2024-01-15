@@ -48,11 +48,15 @@
 				<td>#{incident.resolution}</td>
 				<td>#{incident.status}</td>
 				<td><h:form>
+				<h:commandButton value="Resolve"
+							rendered="#{workIncidentBean.isAdmin}"
+							action="#{workIncidentBean.resolveIncident(incident.id)}"></h:commandButton>
 						<h:commandButton value="Delete"
 							rendered="#{workIncidentBean.canDelete(incident.id)}"
 							action="#{workIncidentBean.deleteIncident(incident.id)}"></h:commandButton>
 
 						<h:commandButton value="Modify"
+						    rendered="#{workIncidentBean.canModify(incident.id)}"
 							action="#{workIncidentBean.modifyIncident(incident.id)}"></h:commandButton>
 					
 					</h:form></td>

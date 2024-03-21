@@ -4,4 +4,4 @@
 		<jta-data-source>jdbc/myFirstResource</jta-data-source>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
-</persistence>
+</persistence> 

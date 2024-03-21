@@ -8,7 +8,7 @@
     <node name="user.library.provider">
       <node name="last.used.libraries">
         <node name="2.2">
-          <node name="eclipselink"/>
+          <node name="eclipselink_v1"/>
         </node>
       </node>
     </node>

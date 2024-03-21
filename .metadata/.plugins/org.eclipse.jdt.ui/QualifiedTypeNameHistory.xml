@@ -3,7 +3,6 @@
     <fullyQualifiedTypeName name="jakarta.persistence.PersistenceContext"/>
     <fullyQualifiedTypeName name="com.example.model.User"/>
     <fullyQualifiedTypeName name="javax.naming.spi.InitialContextFactory"/>
-    <fullyQualifiedTypeName name="javax.naming.InitialContext"/>
     <fullyQualifiedTypeName name="javax.naming.NamingException"/>
     <fullyQualifiedTypeName name="com.example.FirstStatelessEjbRemote"/>
     <fullyQualifiedTypeName name="jakarta.ejb.Remote"/>
@@ -17,4 +16,19 @@
     <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
     <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
     <fullyQualifiedTypeName name="com.example.model.Userprofile"/>
+    <fullyQualifiedTypeName name="jakarta.ejb.Stateless"/>
+    <fullyQualifiedTypeName name="jakarta.ejb.LocalBean"/>
+    <fullyQualifiedTypeName name="com.example.StatelessEjbRemote"/>
+    <fullyQualifiedTypeName name="javax.naming.InitialContext"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="com.example.models.Userprofile"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="jakarta.faces.context.ExternalContext"/>
+    <fullyQualifiedTypeName name="jakarta.inject.Inject"/>
+    <fullyQualifiedTypeName name="com.example.dto.RegisterDTO"/>
+    <fullyQualifiedTypeName name="com.example.dto.WorkIncidentDTO"/>
+    <fullyQualifiedTypeName name="com.example.dao.UserRoleDAORemote"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.example.models.UserRole"/>
+    <fullyQualifiedTypeName name="java.lang.Boolean"/>
 </qualifiedTypeNameHistroy>

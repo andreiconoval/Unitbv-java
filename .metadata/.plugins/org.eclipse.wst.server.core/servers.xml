@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <servers>
-  <server auto-publish-setting="2" auto-publish-time="1" glassfish.adminserverportnumber="4848" glassfish.domainpath="A:\ProgramFiles\payara6\glassfish\domains\domain1" glassfish.serverportnumber="8080" hostname="localhost" id="Payara [domain1]" name="Payara [domain1]" previous-domain="A:\ProgramFiles\payara6\glassfish\domains\domain1" previous-name="Payara [domain1]" runtime-id="Payara" server-type="payara.server" server-type-id="payara.server" start-timeout="240" stop-timeout="240" timestamp="134">
+  <server auto-publish-setting="2" auto-publish-time="1" glassfish.adminserverportnumber="4848" glassfish.domainpath="A:\ProgramFiles\payara6\glassfish\domains\domain1" glassfish.serverportnumber="8080" hostname="localhost" id="Payara [domain1]" name="Payara [domain1]" previous-domain="A:\ProgramFiles\payara6\glassfish\domains\domain1" previous-name="Payara [domain1]" runtime-id="Payara" server-type="payara.server" server-type-id="payara.server" start-timeout="240" stop-timeout="240" timestamp="202">
     <list key="modules" value0="EJBEar::org.eclipse.jst.jee.server:EJBEar::jst.ear::8.0"/>
   </server>
 </servers>

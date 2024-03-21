@@ -1,4 +1,4 @@
 #GlassFish 3
-#Sun Dec 10 13:01:21 EET 2023
+#Tue Jan 23 18:21:16 EET 2024
 org.eclipse.jst.jee.server\:EJBEar=A\:\\ProgramFiles\\payara6\\glassfish\\domains\\domain1\\eclipseApps\\EJBEar
 org.eclipse.jst.jee.server\:myFirstEar=A\:\\ProgramFiles\\payara6\\glassfish\\domains\\domain1\\eclipseApps\\myFirstEar

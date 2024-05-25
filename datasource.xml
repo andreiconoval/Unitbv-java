@@ -1,9 +1,0 @@
- <jdbc-connection-pool datasource-classname="com.mysql.cj.jdbc.MysqlDataSource" name="MyFirstConnectionPool" res-type="javax.sql.DataSource">
-      <property name="Password" value="mysqladmin"></property>
-      <property name="User" value="admin"></property>
-      <property name="DatabaseName" value="testdb"></property>
-      <property name="PortNumber" value="3306"></property>
-      <property name="ServerName" value="torm-databse.c9iye2g6008v.us-east-1.rds.amazonaws.com"></property>
-      <property name="UseSSL" value="false"></property>
-    </jdbc-connection-pool>
-    <jdbc-resource pool-name="MyFirstConnectionPool" jndi-name="jdbc/myFirstResource"></jdbc-resource>

@@ -1,0 +1,18 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "payara/server-full:latest",
+      "Update": "true"
+    },
+    "Ports": [
+      {
+        "ContainerPort": 80
+      },
+      {
+        "ContainerPort": 8080
+      },
+      {
+        "ContainerPort": 4848
+      }
+    ]
+  }

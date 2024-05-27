@@ -1,6 +1,6 @@
 FROM payara/server-full
 
-EXPOSE 80 8080 443
+EXPOSE 8080 4848
 
 COPY EJBEar.ear $DEPLOY_DIR
 
@@ -11,3 +11,5 @@ COPY mysql-connector-java-8.0.30.jar ${LIB_DIR}
 ENV DEPLOY_DROPS=--contextroot=/
 
 COPY domain.xml ${PAYARA_DIR}/glassfish/domains/domain1/config/domain.xml
+
+

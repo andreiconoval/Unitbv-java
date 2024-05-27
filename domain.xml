@@ -321,9 +321,9 @@
           </protocol>
         </protocols>
         <network-listeners>
-          <network-listener protocol="http-listener-1" port="8080" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"></network-listener>
+          <network-listener protocol="http-listener-1" port="4848" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"></network-listener>
           <network-listener protocol="http-listener-2" port="8181" name="http-listener-2" thread-pool="http-thread-pool" transport="tcp"></network-listener>
-          <network-listener protocol="pu-protocol" port="80" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"></network-listener>
+          <network-listener protocol="pu-protocol" port="8080" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"></network-listener>
         </network-listeners>
         <transports>
           <transport name="tcp"></transport>
